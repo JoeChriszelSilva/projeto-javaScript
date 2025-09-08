@@ -32,31 +32,37 @@ export function main() {
     switch (opcao){
         case 1:
             console.log("\n\nCadastrar Sapato\n\n");
-            
+            keyPress()
             break;
         case 2:
             console.log("\n\n Listar todos os Sapatos\n\n");
-          
+            keyPress()
             break;
         case 3:
             console.log("\n\nBuscar Sapato por ID\n\n");
-           
+            keyPress()
             break;
         case 4:
             console.log(" \n\nAtualizar Sapato\n\n");
-          
+            keyPress()
             break;
         case 5:
             console.log("\n\nDeletar Sapato\n\n");
-            
+            keyPress()
             break;
         default:
             console.log("\n\nOpção inválida! Por favor, tente novamente.\n\n");
+            keyPress()
             break;
         }
 
     }
 
+}
+
+function keyPress(): void {
+    console.log("\nPressione enter para continuar...");
+    readlinesync.prompt();
 }
 
 main();
