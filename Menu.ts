@@ -1,22 +1,34 @@
-import readlinesync = require("readline-sync");
+import * as readlinesync from "readline-sync";
 import { Produtos } from "./scr/model/Produtos";
+import { Tenis } from "./scr/model/Tenis";
+import { Sandalia } from "./scr/model/Sandalia";
+import { ProdutoController } from "./scr/Controller/ProdutoControle";   
+
 
 
 export function main() {
 
+    let produtos: ProdutoController = new ProdutoController();
+
     let opcao: number;
+    
+    const tenis: Tenis = new Tenis(1, 1, "AIR FORCE", "NIKE", 30,30,250, "esportivo");
+    tenis.visualizar()
+    const sandalia: Sandalia = new Sandalia(2, 3, "MELISSA", "SEI LA", 35, 15,130, "esportivo");
+    sandalia.visualizar()
+    
 
     while(true) {
 
     console.log("**************************************************");
-    console.log("               kINGCHRISZ SAPATOS                 ");
+    console.log("               kINGCHRISZ IMPORTS                 ");
     console.log("**************************************************");
     console.log("                                                  ");
-    console.log("           1 - Cadastrar Sapato                   ");
-    console.log("           2 - Listar todos os Sapatos            ");
-    console.log("           3 - Buscar Sapato por ID               ");
-    console.log("           4 - Atualizar Sapato                   ");
-    console.log("           5 - Deletar Sapato                     ");
+    console.log("           1 - Cadastrar Produto                   ");
+    console.log("           2 - Listar Produtos            ");
+    console.log("           3 - Buscar Produto por ID               ");
+    console.log("           4 - Atualizar Produto                   ");
+    console.log("           5 - Deletar Produto                    ");
     console.log("           0 - Sair                               ");
     console.log("                                                  ");
     console.log("**************************************************");
@@ -25,7 +37,7 @@ export function main() {
     opcao = readlinesync.questionInt("");
 
     if (opcao == 0){
-        console.log("\n KINGCHRISZ SAPATOS - OS SAPATOS QUE TE VESTE!");
+        console.log("\n KINGCHRISZ IMPORTS - AS MELHORES MARCAS PARA VOCÊ!");
         process.exit(0)
     }
 
@@ -35,7 +47,10 @@ export function main() {
             keyPress()
             break;
         case 2:
-            console.log("\n\n Listar todos os Sapatos\n\n");
+            console.log("\n\n Listar Produtos\n\n");
+
+            Produtos.visualizar();
+
             keyPress()
             break;
         case 3:

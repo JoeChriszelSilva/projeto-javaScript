@@ -1,19 +1,28 @@
+import * as readlinesync from "readline-sync";
 import { Produtos } from "./Produtos";
 
 export class Sandalia extends Produtos{
 
-    private _Salto:boolean;
+    private _tipoDaSandalia: string;
 
-    constructor (id: number, modelo: string, marca: string, tamanho: number, estoque: number, preco: number, salto: boolean){
-        super(id, modelo, marca, tamanho, estoque, preco);
-       this._Salto = salto;
+
+    constructor (id: number, tipo: number, modelo: string, marca: string, tamanho: number, estoque: number, preco: number, tipoDaSandalia: string){
+        super(id, tipo, modelo, marca, tamanho, estoque, preco);
+        this._tipoDaSandalia = tipoDaSandalia;
+   
     }
 
-    public get salto(){
-        return this._Salto
+    public get tipoDaSandalia(){
+        return this._tipoDaSandalia
     }
-    public set salto(salto: boolean){
-        this._Salto
+    public set tipoDaSandalia(tipoDaSandalia: string){
+        this._tipoDaSandalia = tipoDaSandalia;
     }
+
+    public visualizar(): void {
+        super.visualizar();
+        console.log("Tipo de calçado: " + this._tipoDaSandalia +"\n\n")
+    }
+
     
 }
