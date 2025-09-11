@@ -1,7 +1,7 @@
 import * as readlinesync from "readline-sync";
 import { Produtos } from "./scr/model/Produtos";
-import { Tenis } from "./scr/model/Tenis";
-import { Sandalia } from "./scr/model/Sandalia";
+import { Calçados } from "./scr/model/Calçados";
+import { Camisetas } from "./scr/model/Camisetas";
 import { ProdutoController } from "./scr/Controller/ProdutoControle";   
 
 
@@ -10,11 +10,12 @@ export function main() {
 
     let produtos: ProdutoController = new ProdutoController();
 
-    let opcao: number;
+    let opcao, id, tipo, modelo, marca, estoque, preco;
+    const tiposProdutos = ["Calçados" , "Camisetas"];
     
-    const tenis: Tenis = new Tenis(1, 1, "AIR FORCE", "NIKE", 30,30,250, "esportivo");
+    const tenis: Calçados = new Calçados(1, 1, "AIR FORCE", "NIKE", 10, 130, 38);
     tenis.visualizar()
-    const sandalia: Sandalia = new Sandalia(2, 3, "MELISSA", "SEI LA", 35, 15,130, "esportivo");
+    const sandalia: Camisetas = new Camisetas(2, 3, "Camiseta Longline", "Nike", 10, 60, "M");
     sandalia.visualizar()
     
 
@@ -44,25 +45,69 @@ export function main() {
     switch (opcao){
         case 1:
             console.log("\n\nCadastrar Sapato\n\n");
+            console.log("Digite o codigo do produto: ");
+            id = readlinesync.questionInt("");
+
+            console.log("Digite o Modelo do produto: ");
+            modelo = readlinesync.question("");
+
+            console.log("Digite a marca do produto: ");
+            marca = readlinesync.question("");
+        
+            console.log("Digite a quantidade em estoque: ");
+            estoque = readlinesync.questionInt("");
+
+            console.log("Digite o valor: ");
+            preco = readlinesync.questionFloat("");
+
+            console.log("Qual o tipo do produto: ");
+            tipo = readlinesync.keyInSelect(tiposProdutos, "", {cancel: false}) + 1;
+
             keyPress()
             break;
         case 2:
             console.log("\n\n Listar Produtos\n\n");
-
-            Produtos.visualizar();
+            produtos.listarProdutos();
+          
 
             keyPress()
             break;
         case 3:
-            console.log("\n\nBuscar Sapato por ID\n\n");
+            console.log("\n\nBuscar  por ID\n\n");
+             console.log("Digite o codigo do produto: ")
+                    id = readlinesync.questionInt("");
+                    produtos.buscarProdutoPorID(id);
             keyPress()
             break;
         case 4:
-            console.log(" \n\nAtualizar Sapato\n\n");
+            console.log(" \n\nAtualizar Produto\n\n");
+             console.log("Digite o número da Conta: ");
+                    id = readlinesync.questionInt("")
+
+                    let produto = produtos.buscarNoArray(id);
+
+                    if (produto != null) {
+                        console.log("Digite o codigo do produto: ");
+                        id = readlinesync.questionInt("");
+
+                        console.log("Digite o Modelo do produto: ");
+                        modelo = readlinesync.question("");
+
+                        tipo = produto.tipo;
+                        
+                        console.log("Digite o valor: ");
+                        preco = readlinesync.questionFloat("");
+                    }  
+
             keyPress()
             break;
         case 5:
-            console.log("\n\nDeletar Sapato\n\n");
+            console.log("\n\nDeletar produto\n\n");
+                           
+            console.log ("Digite o  numero da conta: ")
+            id = readlinesync.questionInt("");
+            produtos.deletar(id);
+
             keyPress()
             break;
         default:

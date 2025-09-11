@@ -5,16 +5,14 @@ export abstract class Produtos{
     private _tipo: number;
     private _modelo: string;
     private _marca: string;
-    private _tamanho: number;
     private _estoque: number;
     private _preco: number;
 
-    constructor (id: number, tipo: number, modelo: string, marca: string, tamanho: number, estoque: number, preco: number){
+    constructor (id: number, tipo: number, modelo: string, marca: string, estoque: number, preco: number){
         this._id = id;
         this._tipo = tipo
         this._modelo = modelo;
         this._marca = marca;
-        this._tamanho = tamanho;
         this._estoque = estoque;
         this._preco = preco;
     }
@@ -49,13 +47,6 @@ export abstract class Produtos{
         this._marca = marca;
     }
 
-    public get tamanho() { 
-        return this._tamanho
-    }
-    public set tamanho(tamanho: number) {
-        this._tamanho = tamanho;
-    }
-    
     public get estoque() { 
         return this._estoque
     }
@@ -89,7 +80,6 @@ export abstract class Produtos{
         console.log("*****************************************************");
         console.log("         Modelo: " + this._modelo);
         console.log("         Marca: " + this._marca);
-        console.log("         Tamanho: " + this._tamanho);
         console.log("         Estoque: " + this._estoque);
         console.log("         Preço: " + new Intl.NumberFormat('pt-BR', {
                              style: 'currency',
